@@ -1,0 +1,64 @@
+<template>
+    <template if:true={recordsInPage}>
+        <div class="dataTable" style="overflow: hidden;height:100%">
+
+            <div style="overflow: hidden">
+                <lightning-datatable 
+                    key-field="Id" 
+                    data={recordsInPage} 
+                    columns={columns} 
+                    sorted-by={sortBy} 
+                    sorted-direction={sortedDirection}
+                    onsort={handleSortdata} 
+                    hide-checkbox-column={hideCheckBox}
+                    errors={errors}>
+                </lightning-datatable>
+            </div>
+            <template if:true={showPagination}>
+                <div>
+                    <lightning-layout multiple-rows class="slds-var-p-vertical_x-small slds-var-p-horizontal_small">
+                        <lightning-layout-item size="4">
+                            <div class="slds-float_left">
+                                {pageNumberInfo}
+                            </div>
+                        </lightning-layout-item>
+                        <lightning-layout-item size="4">
+                            <div class="slds-align_absolute-center">
+                                <a onclick={showFirstPage}>
+                                    <lightning-button-icon icon-name="utility:left" size="small"
+                                        alternative-text="First">
+                                    </lightning-button-icon>
+                                </a>
+                                <a onclick={showPreviousPage}>
+                                    <lightning-button-icon icon-name="utility:chevronleft" size="small"
+                                        alternative-text="Previous">
+                                    </lightning-button-icon>
+                                </a>
+                                <a onclick={showNextPage}>
+                                    <lightning-button-icon icon-name="utility:chevronright" size="small"
+                                        alternative-text="Next">
+                                    </lightning-button-icon>
+                                </a>
+                                <a onclick={showLastPage}>
+                                    <lightning-button-icon icon-name="utility:right" size="small"
+                                        alternative-text="Next">
+                                    </lightning-button-icon>
+                                </a>
+                            </div>
+                        </lightning-layout-item>
+                        <lightning-layout-item size="4">
+                            <div class="slds-float_right">
+                                <span>
+                                    {recordsInfo}
+                                </span>
+                            </div>
+                        </lightning-layout-item>
+                    </lightning-layout>
+                </div>
+            </template>
+        </div>
+    </template>
+    <template if:false={recordsInPage}>
+        <h4> No Record Found for given criteria.</h4>
+    </template>
+</template>

@@ -1,0 +1,29 @@
+<template>
+    <lightning-layout>
+        <div class="c-container">
+            <lightning-layout multiple-rows="false">
+                <lightning-layout-item padding="around-small">
+                    <c-child-datatable 
+                        fecth-object-name={objectNameDatatable} 
+                        onretreive={retriveRecordHandler}>
+                    </c-child-datatable>
+                </lightning-layout-item>
+            </lightning-layout>
+        </div>
+    </lightning-layout>
+
+    <template if:true={isRecordsVisible}>
+        <lightning-card>
+            <p class="slds-p-horizontal_medium">{objectNameDatatable} Records Using dynamic DataTable</p>
+            <br></br>
+            <c-generic-data-table-l-w-c 
+                    columns={columns} 
+                    records={data} 
+                    sortable= true 
+                    show-pagination=true 
+                    pagination-size="10"
+                    hide-check-box="true">
+            </c-generic-data-table-l-w-c>
+        </lightning-card>
+    </template>
+</template>
